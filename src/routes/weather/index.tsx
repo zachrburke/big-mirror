@@ -1,49 +1,39 @@
 import { Component, h, ComponentProps } from "preact";
+import { fetchDailyForecast, Forecast } from '../../api/weather';
 import * as style from "./style.css";
-
-interface Forecast {
-    Temperature: {
-        Maximum: {
-            Value: string;
-        }
-    }
-}
-
-interface DailyForecast {
-    DailyForecasts: [Forecast];
-}
 
 interface WeatherState {
     forecast: Forecast;
 }
 
 export default class Weather extends Component<ComponentProps, WeatherState> {
-
     componentDidMount() {
         this.fetchWeather();
     }
-
     fetchWeather() {
-        var apiKey = 'tTTPtHCg4ewmsUnd8tjN5HbPyhg4VGWq';
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/1day/32512_PC?apikey=${apiKey}`)
-            .then(res => res.json())
-            .then((data: DailyForecast) => {
+        fetchDailyForecast()
+            .then((forecast: Forecast) => {
                 this.setState({
-                    forecast: data.DailyForecasts[0],
+                    forecast
                 });
-            });
+            })
     }
-
     public render() {
+        let { forecast } = this.state;
         return (
             <div class={style.home}>
-                <h1>Weather</h1>
-                <p>This is the Weather component.</p>
-                {this.state.forecast && 
-                    <p>
-                        <strong>High:</strong>
-                        <span>{this.state.forecast.Temperature.Maximum.Value}</span>
-                    </p>
+                {!forecast && <h1>Loading..</h1>}
+                {forecast && 
+                    <div>
+                        <h2>{forecast.city}</h2>
+                        <h1>{forecast.currentTemperature.value}&deg;{forecast.currentTemperature.unit}</h1>
+                        <h2>{forecast.headline}</h2>
+                        <div class={style.dayStats}>
+                            <span>{forecast.day}</span>
+                            <span>{forecast.high.value}&deg;{forecast.high.unit}</span>
+                            <span>{forecast.low.value}&deg;{forecast.low.unit}</span>
+                        </div>
+                    </div>
                 }
 
             </div>

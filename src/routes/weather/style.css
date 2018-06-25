@@ -2,4 +2,12 @@
 	padding: 56px 20px;
 	min-height: 100%;
 	width: 100%;
+	text-align: center;
+}
+
+.home .day-stats {
+	display: flex;
+	justify-content: space-around;
+	max-width: 420px;
+	margin: 0 auto;
 }
