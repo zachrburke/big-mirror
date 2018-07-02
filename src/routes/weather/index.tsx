@@ -26,12 +26,14 @@ export default class Weather extends Component<ComponentProps, WeatherState> {
                 {forecast && 
                     <div>
                         <h2>{forecast.city}</h2>
-                        <h1>{forecast.currentTemperature.value}&deg;{forecast.currentTemperature.unit}</h1>
-                        <h2>{forecast.headline}</h2>
+                        <h1>{forecast.currentTemperature}&deg;F</h1>
+                        <h2>
+                            {forecast.headline}
+                        </h2>
                         <div class={style.dayStats}>
                             <span>{forecast.day}</span>
-                            <span>{forecast.high.value}&deg;{forecast.high.unit}</span>
-                            <span>{forecast.low.value}&deg;{forecast.low.unit}</span>
+                            <span>{forecast.high}&deg;F</span>
+                            <span>{forecast.low}&deg;F</span>
                         </div>
                     </div>
                 }

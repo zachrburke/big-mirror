@@ -1,6 +1,6 @@
 import { resolve } from "path";
 
-export default function(config, env, helpers) {
+export default function (config, env, helpers) {
     // Switch css-loader for typings-for-css-modules-loader, which is a wrapper
     // that automatically generates .d.ts files for loaded CSS
     helpers.getLoadersByName(config, "css-loader").forEach(({ loader }) => {
@@ -25,6 +25,14 @@ export default function(config, env, helpers) {
         "src",
         "index"
     );
+
+    config.devServer.proxy = [
+        {
+            path: '/forecast',
+            target: 'http://localhost:8081',
+            secure: false,
+        }
+    ];
 
     return config;
 }
