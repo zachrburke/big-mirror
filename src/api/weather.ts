@@ -18,7 +18,7 @@ const dayMap = [
 ];
 
 export const fetchDailyForecast = () => {
-    return fetch(`/forecast`)
+    return fetch(`/assets/darkskysample.json`)
         .then(res => res.json())
         .then((data): Forecast => {
             console.log(data);

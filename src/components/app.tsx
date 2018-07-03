@@ -1,7 +1,8 @@
 import { Component, h } from "preact";
-import { Route, Router, RouterOnChangeArgs } from "preact-router";
+import { Route, Router, RouterOnChangeArgs, Link } from "preact-router";
 
 import Weather from "../routes/weather";
+import Calender from "../routes/calender";
 
 if ((module as any).hot) {
     // tslint:disable-next-line:no-var-requires
@@ -19,7 +20,18 @@ export default class App extends Component {
             <div id="app">
                 <Router onChange={this.handleRoute}>
                     <Route path="/" component={Weather} />
+                    <Route path="/calender" component={Calender} />
                 </Router>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link href="/" activeClassName="active">Weather</Link>
+                        </li>
+                        <li>
+                            <Link href="/calender" activeClassName="active">Calender</Link>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         );
     }
