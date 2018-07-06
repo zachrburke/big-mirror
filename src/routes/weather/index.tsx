@@ -29,6 +29,7 @@ export default class Weather extends Component<ComponentProps, WeatherState> {
                         <h1>{forecast.currentTemperature}&deg;F</h1>
                         <h2>
                             {forecast.headline}
+                            <i class="wi wi-night-sleet"></i>
                         </h2>
                         <div class={style.dayStats}>
                             <span>{forecast.day}</span>
