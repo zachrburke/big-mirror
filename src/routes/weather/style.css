@@ -1,3 +1,7 @@
+.home {
+	--border-color: #888;
+}
+
 .home .day-stats {
 	display: flex;
 	justify-content: space-around;
@@ -6,14 +10,22 @@
 }
 
 .home .hourly {
-	height: 100px;
 	margin-top: 20px;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	border-top: 1px solid var(--border-color);
+	border-bottom: 1px solid var(--border-color);
 	overflow-x: scroll;
 	display: flex;
+	padding: 8px 0;
 }
 
 .home .hourly > div {
 	min-width: 80px;
+}
+
+.home .hourly canvas {
+	margin: 5px;
+}
+
+.home .hourly h3 {
+	margin: 5px;
 }

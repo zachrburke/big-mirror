@@ -12,6 +12,7 @@ export interface Forecast {
 export interface HourlyForecast {
     temperature: number;
     time: Date;
+    icon: string;
 }
 
 
@@ -42,6 +43,7 @@ export const fetchDailyForecast = () => {
                 hourly: data.hourly.data.map((forecast: any) => ({
                     temperature: forecast.temperature,
                     time: new Date(forecast.time * 1000),
+                    icon: forecast.icon,
                 })),
             };
         });
