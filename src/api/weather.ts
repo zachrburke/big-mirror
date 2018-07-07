@@ -6,7 +6,9 @@ export interface Forecast {
     low: number;
     day: string;
     icon: string;
+    hourly: [Forecast];
 }
+
 
 const dayMap = [
     'Sunday',
@@ -23,14 +25,16 @@ export const fetchDailyForecast = () => {
         .then(res => res.json())
         .then((data): Forecast => {
             console.log(data);
+            let todaysForecast = data.daily.data[0];
             return {
                 city: "I don't know the city!",
                 headline: data.currently.summary,
                 currentTemperature: data.currently.temperature,
-                high: 999.9,
-                low: 999.9,
+                high: todaysForecast.temperatureHigh,
+                low: todaysForecast.temperatureLow,
                 day: dayMap[new Date().getDay()],
                 icon: data.currently.icon,
+                hourly: data.hourly,
             }
         });
 }
