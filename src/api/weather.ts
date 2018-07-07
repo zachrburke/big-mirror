@@ -5,6 +5,7 @@ export interface Forecast {
     high: number;
     low: number;
     day: string;
+    icon: string;
 }
 
 const dayMap = [
@@ -18,7 +19,7 @@ const dayMap = [
 ];
 
 export const fetchDailyForecast = () => {
-    return fetch(`/assets/darkskysample.json`)
+    return fetch(`/forecast`)
         .then(res => res.json())
         .then((data): Forecast => {
             console.log(data);
@@ -29,6 +30,7 @@ export const fetchDailyForecast = () => {
                 high: 999.9,
                 low: 999.9,
                 day: dayMap[new Date().getDay()],
+                icon: data.currently.icon,
             }
         });
 }
