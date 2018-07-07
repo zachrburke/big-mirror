@@ -22,6 +22,7 @@ export default class Weather extends Component<ComponentProps, WeatherState> {
                 this.setState({
                     forecast
                 });
+                console.log(forecast);
             })
     }
     public render() {
@@ -31,7 +32,7 @@ export default class Weather extends Component<ComponentProps, WeatherState> {
                 {!forecast && <h1>Loading..</h1>}
                 {forecast && 
                     <div>
-                        <h2>{forecast.city}</h2>
+                        {/* <h2>{forecast.city}</h2> */}
                         <h3>{forecast.headline}</h3>
                         <canvas id="icon" width="64" height="64" />
                         <h1>{forecast.currentTemperature}&deg;F</h1>
@@ -39,6 +40,14 @@ export default class Weather extends Component<ComponentProps, WeatherState> {
                             <span>{forecast.day}</span>
                             <span>{forecast.high}&deg;F</span>
                             <span>{forecast.low}&deg;F</span>
+                        </div>
+                        <div class={style.hourly}>
+                            {forecast.hourly.map(data => 
+                                <div>
+                                    <h3>{data.time.toLocaleString('en-US', { hour: 'numeric', hour12: true })}</h3>
+                                    <span>{data.temperature}&deg;F</span>
+                                </div>
+                            )}
                         </div>
                     </div>
                 }

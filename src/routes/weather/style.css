@@ -4,3 +4,16 @@
 	max-width: 420px;
 	margin: 0 auto;
 }
+
+.home .hourly {
+	height: 100px;
+	margin-top: 20px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	overflow-x: scroll;
+	display: flex;
+}
+
+.home .hourly > div {
+	min-width: 80px;
+}
