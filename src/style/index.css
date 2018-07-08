@@ -3,10 +3,10 @@ html, body {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	background: #FAFAFA;
+	background: #444;
 	font-family: 'Helvetica Neue', arial, sans-serif;
 	font-weight: 400;
-	color: #444;
+	color: #ddd;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -45,7 +45,7 @@ nav ul li.active {
 }
 
 nav ul li a {
-	color: #444;
+	color: #ddd;
 	text-decoration: none;
 	display: block;
 	width: 100%;

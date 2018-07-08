@@ -26,14 +26,14 @@ const dayMap = [
     'Saturday'
 ];
 
-export const fetchDailyForecast = () => {
-    return fetch(`/forecast`)
+export const fetchDailyForecast = (position: Position) => {
+    return fetch(`/forecast?lat=${position.coords.latitude}&long=${position.coords.longitude}`)
         .then(res => res.json())
         .then((data): Forecast => {
             console.log(data);
             let todaysForecast = data.daily.data[0];
             return {
-                city: "I don't know the city!",
+                city: "Plano, TX (Probably)",
                 headline: data.currently.summary,
                 currentTemperature: data.currently.temperature,
                 high: todaysForecast.temperatureHigh,

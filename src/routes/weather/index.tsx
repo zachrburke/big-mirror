@@ -9,23 +9,24 @@ interface WeatherState {
 
 export default class Weather extends Component<ComponentProps, WeatherState> {
     componentDidMount() {
-        this.fetchWeather();
+        navigator.geolocation.getCurrentPosition(position => this.fetchWeather(position));
     }
     componentDidUpdate() {
-        let skycons = new Skycons({color: 'black'});
+        let skycons = new Skycons({color: '#ddd'});
         skycons.add('icon', this.state.forecast.icon);
         this.state.forecast.hourly.forEach((data, i) => {
             skycons.add(`hourly-icon-${i}`, data.icon);
         })
         skycons.play();
     }
-    fetchWeather() {
-        fetchDailyForecast()
+    fetchWeather(position: Position) {
+        console.log(position);
+        fetchDailyForecast(position)
             .then((forecast: Forecast) => {
                 this.setState({
                     forecast
                 });
-            })
+            });
     }
     public render() {
         let { forecast } = this.state;
@@ -34,7 +35,7 @@ export default class Weather extends Component<ComponentProps, WeatherState> {
                 {!forecast && <h1>Loading..</h1>}
                 {forecast && 
                     <div>
-                        {/* <h2>{forecast.city}</h2> */}
+                        <h2>{forecast.city}</h2>
                         <h3>{forecast.headline}</h3>
                         <canvas id="icon" width="64" height="64" />
                         <h1>{forecast.currentTemperature.toFixed(0)}&deg;F</h1>
